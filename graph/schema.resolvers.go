@@ -20,11 +20,11 @@ func (r *mutationResolver) DeleteCar(ctx context.Context, input model.DeleteCarI
 }
 
 func (r *queryResolver) CarBrands(ctx context.Context) (*model.CarBrandsPayload, error) {
-	panic(fmt.Errorf("not implemented"))
+	return nil, fmt.Errorf("not implemented")
 }
 
 func (r *queryResolver) UserCars(ctx context.Context) (*model.CarsPayload, error) {
-	panic(fmt.Errorf("not implemented"))
+	return nil, fmt.Errorf("not implemented")
 }
 
 func (r *queryResolver) UserCar(ctx context.Context, id string) (*model.Car, error) {
