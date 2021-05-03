@@ -48,4 +48,26 @@ query carBrands {
     }
 }
 ```
-15) Имплементируем пару методов: 
+15) Имплементируем пару методов schema.resolvers.go: 
+```go
+func (r *queryResolver) CarBrands(ctx context.Context) (*model.CarBrandsPayload, error) {
+	return &model.CarBrandsPayload{
+		Brands: []*model.Brand{
+			{"Lada", "Lada", "http://pngimg.com/uploads/lada/lada_PNG105.png", "lada@lada.ru"},
+			{"Toyota","Toyota", "http://logocentral.info/wp-content/uploads/2018/12/Toyota-Logo-1989.jpg","toyota@mail.com"},
+		},
+	}, nil
+}
+
+func (r *queryResolver) UserCars(ctx context.Context) (*model.CarsPayload, error) {
+	return nil, fmt.Errorf("not implemented")
+}
+```
+16) выполнить запрос:  
+```bazaar
+query carBrands {
+    carBrands{brands{
+      name
+    	email}
+    }
+}

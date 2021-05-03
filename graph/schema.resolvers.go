@@ -20,7 +20,12 @@ func (r *mutationResolver) DeleteCar(ctx context.Context, input model.DeleteCarI
 }
 
 func (r *queryResolver) CarBrands(ctx context.Context) (*model.CarBrandsPayload, error) {
-	return nil, fmt.Errorf("not implemented")
+	return &model.CarBrandsPayload{
+		Brands: []*model.Brand{
+			{"Lada", "Lada", "http://pngimg.com/uploads/lada/lada_PNG105.png", "lada@lada.ru"},
+			{"Toyota", "Toyota", "http://logocentral.info/wp-content/uploads/2018/12/Toyota-Logo-1989.jpg", "toyota@mail.com"},
+		},
+	}, nil
 }
 
 func (r *queryResolver) UserCars(ctx context.Context) (*model.CarsPayload, error) {
