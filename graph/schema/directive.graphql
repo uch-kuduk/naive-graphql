@@ -1,0 +1,2 @@
+#directive @regex(pattern: String!, errorMessage: String) on FIELD_DEFINITION | ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+directive @auth on FIELD_DEFINITION

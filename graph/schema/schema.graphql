@@ -1,0 +1,26 @@
+scalar Email
+
+# interface for relay specification
+interface Node {
+    id: ID!
+}
+
+type Mutation {
+    # Гараж
+    """ Добавить авто в гараж """
+    createCar(input: CreateCarInput!): CreateCarPayload! @auth
+    """ Удаление авто из гаража """
+    deleteCar(input: DeleteCarInput!): DeleteCarPayload! @auth
+}
+
+type Query {
+    # Гараж
+    """ Список марок автомобилей """
+    carBrands: CarBrandsPayload!
+    """ Список автомобилей пользователя """
+    userCars: CarsPayload @auth
+    """ Автомобилей пользователя """
+    userCar(id: ID!): Car @auth
+    # node method for relay specification
+    node(id: ID!): Node
+}

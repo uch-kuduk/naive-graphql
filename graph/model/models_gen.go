@@ -2,19 +2,65 @@
 
 package model
 
-type NewTodo struct {
-	Text   string `json:"text"`
-	UserID string `json:"userId"`
+type Node interface {
+	IsNode()
 }
 
-type Todo struct {
-	ID   string `json:"id"`
-	Text string `json:"text"`
-	Done bool   `json:"done"`
-	User *User  `json:"user"`
-}
-
-type User struct {
-	ID   string `json:"id"`
+//  Марка автомобиля
+type Brand struct {
+	ID string `json:"id"`
+	//  Наименование
 	Name string `json:"name"`
+	//  Иконка
+	Icon string `json:"icon"`
+	//  Email производителя
+	Email string `json:"email"`
+}
+
+func (Brand) IsNode() {}
+
+//  Автомобиль
+type Car struct {
+	ID string `json:"id"`
+	//  Уникальный код транспортного средства (Vehicle Identification Number)
+	Vin *string `json:"vin"`
+	//  Модель автомобиля
+	Model string `json:"model"`
+	//  Бренд автомобиля
+	Brand *Brand `json:"brand"`
+	//  Год выпуска
+	Year int `json:"year"`
+}
+
+func (Car) IsNode() {}
+
+type CarBrandsPayload struct {
+	Brands []*Brand `json:"brands"`
+}
+
+type CarsPayload struct {
+	Cars []*Car `json:"cars"`
+}
+
+type CreateCarInput struct {
+	//  Уникальный код транспортного средства (Vehicle Identification Number)
+	Vin *string `json:"vin"`
+	//  Модель автомобиля
+	Model *string `json:"model"`
+	//  ID бренда автомобиля
+	BrandID string `json:"brandID"`
+	//  Год выпуска
+	Year int `json:"year"`
+}
+
+type CreateCarPayload struct {
+	Car *Car `json:"car"`
+}
+
+type DeleteCarInput struct {
+	ID string `json:"id"`
+}
+
+type DeleteCarPayload struct {
+	Car *Car `json:"car"`
 }

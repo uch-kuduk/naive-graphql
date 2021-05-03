@@ -1,0 +1,55 @@
+input CreateCarInput{
+    """ Уникальный код транспортного средства (Vehicle Identification Number) """
+    vin: String
+    """ Модель автомобиля """
+    model: String
+    """ ID бренда автомобиля """
+    brandID: ID!
+    """ Год выпуска """
+    year: Int!
+}
+
+input DeleteCarInput{
+    id: ID!
+}
+
+type CreateCarPayload {
+    car: Car!
+}
+
+
+type CarBrandsPayload {
+    brands: [Brand!]
+}
+
+type DeleteCarPayload {
+    car: Car
+}
+
+type CarsPayload {
+    cars: [Car!]
+}
+
+""" Марка автомобиля """
+type Brand implements Node  {
+    id: ID!
+    """ Наименование """
+    name: String!
+    """ Иконка """
+    icon: String!
+    """ Email производителя """
+    email: Email!
+}
+
+""" Автомобиль """
+type Car implements Node {
+    id: ID!
+    """ Уникальный код транспортного средства (Vehicle Identification Number) """
+    vin: String
+    """ Модель автомобиля """
+    model: String!
+    """ Бренд автомобиля """
+    brand: Brand!
+    """ Год выпуска """
+    year: Int!
+}
